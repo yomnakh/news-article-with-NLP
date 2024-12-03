@@ -1,13 +1,10 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebPackPlugin = require("html-webpack-plugin")
+const path = require('path');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-
 
 module.exports = {
     entry: './src/client/index.js',
@@ -21,8 +18,8 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
-        }
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+            }
         ]
     },
     plugins: [
@@ -30,21 +27,28 @@ module.exports = {
             template: "./src/client/views/index.html",
             filename: "./index.html",
         }),
-        new WorkboxPlugin.GenerateSW(),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
         }),
+        new WorkboxPlugin.GenerateSW({
+            clientsClaim: true,
+            skipWaiting: true,
+        }),
     ],
-    devServer: {
-        port: 3000,
-        allowedHosts: 'all'
-    },
     optimization: {
         minimize: true,
         minimizer: [
-          new TerserPlugin(),
-          new CssMinimizerPlugin(),
+            new TerserPlugin(),
+            new CssMinimizerPlugin(),
         ],
-      },
-}
+    },
+    devServer: {
+        port: 3001, // Changed port to 3001
+        allowedHosts: 'all'
+    },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].[contenthash].js',
+    },
+};
