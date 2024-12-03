@@ -1,40 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Test</title>
-    </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLP Article Analyzer</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">NLP Analyzer</div>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#help">Help</a>
+            </nav>
+        </div>
+    </header>
 
-    <body>
+    <main>
+        <h1>Article Analysis Tool</h1>
+        <p class="description">
+            Analyze any article or blog post using Natural Language Processing.
+            Simply enter the URL below to get started.
+        </p>
 
-        <header>
-            <div class="">
-                Logo
-            </div>
-            <div class="">
-                navigation
-            </div>
-        </header>
+        <section>
+            <form id="urlForm">
+                <input 
+                    id="urlInput" 
+                    type="url" 
+                    name="url" 
+                    placeholder="Enter article URL (https://...)" 
+                    required
+                >
+                <button type="submit">Analyze Article</button>
+            </form>
+        </section>
 
-        <main>
-            <section>
-                <form id="urlForm">
-                    <input id="name" type="text" name="url" placeholder="Enter URL" required>
-                    <button id="submitButton" type="submit">Submit</button>
-                </form>
-                
-            </section>
+        <section id="results">
+            <!-- Results will be dynamically inserted here -->
+        </section>
+    </main>
 
-            <section>
-                <strong>Form Results:</strong>
-                <div id="results"></div>
-            </section>
-        </main>
-
-        <footer>
-            <p>This is a footer</p>
-        </footer>
-
-    </body>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 NLP Article Analyzer. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
 </html>
